@@ -1,0 +1,131 @@
+/* Water Droplet Container */
+.droplet-container {
+  position: fixed; /* Fix it to the viewport */
+  top: 50%; /* Center it vertically */
+  right: 0; /* Align it to the right edge */
+  transform: translateY(-50%); /* Center it vertically */
+  z-index: 1000; /* Ensure it appears above other content */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center the droplet vertically */
+}
+
+/* Water Droplet (Initial State - Vertical Bar) */
+.droplet-bar {
+  width: 8px; /* Small vertical bar */
+  height: 60px; /* Same height as the droplet */
+  background: rgba(0, 0, 255, 0.5); /* Blue color with some transparency */
+  border-radius: 25px; /* Rounded edges */
+  transition: width 0.3s ease, border-radius 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  display: flex;
+  align-items: center; /* Center the button vertically */
+  position: relative; /* Ensure that icons are positioned relative to the droplet-bar */
+}
+
+/* Water Droplet (Expanded State) */
+.droplet-expanded {
+  width: 30px; /* Width of the droplet */
+  height: 50px; /* Height of the droplet */
+  border-radius: 25px 0 0 25px; /* Rounded bottom-left and top-left edges */
+  background: inherit; /* Inherit background color */
+  display: flex;
+  align-items: center; /* Center the button vertically */
+  justify-content: center; /* Center the button horizontally */
+  animation: dropExpand 0.5s forwards; /* Animation for expanding effect */
+}
+
+/* Dark Mode Styles */
+.dark-mode .droplet-bar {
+  background: #3C3D37; /* Adjust color for dark mode */
+}
+
+.dark-mode .droplet-expanded {
+  background: #3C3D37; /* Adjust color for dark mode */
+}
+
+/* Light Mode Styles */
+.light-mode .droplet-bar {
+  background: #DAC0A3; /* Adjust color for light mode */
+}
+
+.light-mode .droplet-expanded {
+  background: #DAC0A3; /* Adjust color for light mode */
+}
+
+/* Button Styles */
+.droplet-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%; /* Make the button cover the entire droplet area */
+  height: 100%; /* Make the button cover the entire droplet area */
+  display: flex; /* Flexbox for centering content */
+  align-items: center; /* Center the icons vertically */
+  justify-content: center; /* Center the icons horizontally */
+  position: relative; /* Ensure positioning for child elements */
+}
+.dark-mode .droplet-btn{
+  width: 30px; /* Width of the droplet */
+  height: 50px; /* Height of the droplet */
+  border-radius: 25px 0 0 25px; /* Rounded bottom-left and top-left edges */
+  background: inherit; /* Inherit background color */
+
+}
+.dark-mode .droplet-container{
+  background-color: transparent;
+}
+
+/* Icon Styles */
+.icon {
+  position: absolute; /* Position icons absolutely within the button */
+  transition: opacity 0.3s ease, transform 0.5s ease; /* Smooth transition for icon visibility and movement */
+  width: 14px; /* Adjust icon size */
+  height: auto; /* Adjust icon size */
+}
+
+/* Icons Initial State */
+.icon {
+  opacity: 0; /* Hide icons initially */
+}
+
+/* Icons when Droplet is Expanded */
+.droplet-expanded .icon {
+  opacity: 1; /* Show icons */
+}
+
+/* Icon movement animation */
+.icon-up {
+  transform: translateY(0px); /* Move icon up */
+}
+
+.icon-down {
+  transform: translate(40px, 40px); /* Move icon down */
+}
+
+.icon-transition {
+  transition: opacity 0.3s ease, transform 0.5s ease; /* Smooth transition for icon visibility and movement */
+}
+
+/* Animation for expanding and collapsing */
+@keyframes dropExpand {
+  0% {
+    transform: scaleY(1) translateY(0); /* Initial state */
+  }
+  50% {
+    transform: scaleY(1.1) translateY(-5px); /* Mid-point with slight upward shift */
+  }
+  100% {
+    transform: scaleY(1) translateY(0); /* Final state */
+  }
+}
+
+@keyframes dropCollapse {
+  0% {
+    transform: scaleY(1) translateY(0); /* Initial state */
+  }
+  50% {
+    transform: scaleY(0.8) translateY(5px); /* Mid-point with slight downward shift */
+  }
+  100% {
+    transform: scaleY(0) translateY(50px); /* Final collapsed state */
+  }
+}

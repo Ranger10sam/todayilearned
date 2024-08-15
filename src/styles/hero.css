@@ -1,0 +1,7 @@
+.hero-blob{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/blob.svg);
+    background-repeat: no-repeat;
+}
