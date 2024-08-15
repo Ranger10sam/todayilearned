@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Today I Learned",
   description: "Document what you learnt today",
 };
-const shantell = Shantell_Sans({ subsets: ['latin'] })
+const shantell = Shantell_Sans({ subsets: ['latin'], display: "swap" })
 
 
 export default function RootLayout({
