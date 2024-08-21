@@ -19,7 +19,13 @@ body {
     position: fixed;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .dark-mode{
     background-color: #1E201E;
     color: #eae8e6;
