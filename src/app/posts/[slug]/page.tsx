@@ -1,35 +1,35 @@
-import fs from "fs";
+import { getNotionPosts } from "@/lib/notion";
 import Markdown from "markdown-to-jsx";
-import matter from "gray-matter";
-import getPostMetadata from "../../../components/getPostMetadata";
-
-const getPostContent = (slug: string) => {
-  const folder = "posts/";
-  const file = `${folder}${slug}.md`;
-  const content = fs.readFileSync(file, "utf8");
-  const matterResult = matter(content);
-  return matterResult;
-};
 
 export const generateStaticParams = async () => {
-  const posts = getPostMetadata();
+  const posts = await getNotionPosts(); // Use the correct function to fetch posts
+
+  if (!posts || !Array.isArray(posts)) {
+    return [];
+  }
+
   return posts.map((post) => ({
-    slug: post.slug,
+    slug: post.slug, // Ensure this key exists in your post object
   }));
 };
 
-const PostPage = (props: any) => {
+const PostPage = async (props: any) => {
   const slug = props.params.slug;
-  const post = getPostContent(slug);
+  const post = await getNotionPosts(); // Adjust function name if needed
+
+  if (!post) {
+    return <div>Post not found</div>;
+  }
+
   return (
     <div>
       <div className="my-12 text-center">
-        <h1 className="text-2xl text-slate-600 ">{post.data.title}</h1>
-        <p className="text-slate-400 mt-2">{post.data.date}</p>
+        <h1 className="text-2xl text-slate-600 ">{post.title}</h1>
+        <p className="text-slate-400 mt-2">{post.date}</p>
       </div>
 
       <article className="prose">
-        <Markdown>{post.content}</Markdown>
+        <p>{post.previewText}</p> {/* Or whatever content you want to display */}
       </article>
     </div>
   );
