@@ -5,7 +5,7 @@ export default function Navbar(){
     return(
         <>
             <div className="flex justify-left sticky top-0 bg-inherit">
-                <Link href='/' >
+                <Link href="/" >
                 <Image 
                     src={favicon}
                     alt="Icon"
