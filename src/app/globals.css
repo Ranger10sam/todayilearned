@@ -5,12 +5,16 @@
 /* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+html {
+    overflow: hidden;
+}
 body {
     margin: 0;
     padding: 0 25px;
     background-color: #fffcf9;
     color: #1E201E;
-
+    overflow-y: scroll;
+    -webkit-overflow-scrolling:touch;
 }
 .dark-mode{
     background-color: #1E201E;
