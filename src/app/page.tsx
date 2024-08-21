@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Hero from '@/components/hero'
-import getPostMetadata from "../components/getPostMetadata";
-import PostPreview from "../components/postPreview";
 import { fetchPages } from "@/lib/notion";
 import Link from "next/link";
 

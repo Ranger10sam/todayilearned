@@ -2,7 +2,7 @@ import 'server-only'
 
 import { Client } from '@notionhq/client';
 import React from 'react';
-import { BlockObjectRequest, BlockObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { BlockObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export const notion = new Client({
   auth: process.env.NOTION_TOKEN,

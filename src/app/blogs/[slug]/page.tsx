@@ -1,4 +1,3 @@
-import Navbar from "@/components/navbar";
 import { fetchBySlug, fetchPageBlocks, notion } from "@/lib/notion";
 import bookmarkPlugin from "@notion-render/bookmark-plugin";
 import { NotionRenderer } from "@notion-render/client";
