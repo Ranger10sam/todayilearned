@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Hero from '@/components/hero'
 import { fetchPages } from "@/lib/notion";
 import Link from "next/link";
@@ -19,19 +18,19 @@ export default async function Home() {
       <div>
         <h1 className="text-3xl mb-5">Recently <span>I learn&apos;t...</span> </h1>
       </div>
-      <div className="blog-grid grid grid-cols-1 md:grid-cols-2 gap-4" >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" >
         {posts.results.map((post: any)=>{
           return(
             <div key={post.id}>
               <div
-                className="border border-slate-300 p-4 rounded-md shadow-sm bg-white h-10dvh" 
+                className="blog-grid border border-slate-300 p-4 rounded-md shadow-sm bg-white h-10vh " 
               >                
                 <Link
                   href={`/blogs/${post.properties.Slug.rich_text[0].plain_text}`}
                 >
-                  <h1 className="blog-title text-xl">
+                  <h2 className="h2 text-xl">
                     {post.properties.Title.title[0].plain_text}
-                  </h1>
+                  </h2>
                   <p className="mt-4 text-sm text-dark-tertiary">
                     {post.properties.PreviewText.rich_text[0].plain_text}
                   </p>

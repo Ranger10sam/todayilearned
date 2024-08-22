@@ -1,20 +1,32 @@
-"use client"
-import { useState, useEffect, useRef } from 'react';
+"use client";
+import { useState, useEffect, useRef } from "react";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '@/styles/displayMode.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "@/styles/displayMode.css";
 
 const DisplayMode = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [hasExpanded, setHasExpanded] = useState(false); // Track expansion state
-  const [animationClass, setAnimationClass] = useState(''); // Track animation state
+  const [animationClass, setAnimationClass] = useState(""); // Track animation state
   const containerRef = useRef<HTMLDivElement | null>(null); // Type the ref
 
   const toggleDarkMode = () => {
-    setIsDarkMode(prevMode => {
+    setIsDarkMode((prevMode) => {
       const newMode = !prevMode;
-      document.body.classList.toggle('dark-mode', newMode);
-      localStorage.setItem('theme', newMode ? 'dark' : 'light');
+      document.body.classList.toggle("dark-mode", newMode);
+  
+      // Select all elements with the class 'blog-grid'
+      const blogGrids = document.querySelectorAll(".blog-grid");
+      blogGrids.forEach((blogGrid) => {
+        blogGrid.classList.toggle("dark-mode", newMode);
+      });
+       // Apply dark-mode to all h2 elements
+       const headers = document.querySelectorAll(".h2");
+       headers.forEach((headers) => {
+        headers.classList.toggle("dark-mode", newMode);
+    });
+  
+      localStorage.setItem("theme", newMode ? "dark" : "light");
       return newMode;
     });
   };
@@ -24,7 +36,7 @@ const DisplayMode = () => {
       setHasExpanded(true);
     } else {
       toggleDarkMode();
-      setAnimationClass('icon-transition');
+      setAnimationClass("icon-transition");
     }
   };
 
@@ -35,28 +47,39 @@ const DisplayMode = () => {
   };
 
   useEffect(() => {
-    // Check localStorage for theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
-      document.body.classList.toggle('dark-mode', savedTheme === 'dark');
-    } else {
-      // Set default theme if not found
-      localStorage.setItem('theme', 'light');
-    }
-  }, []);
+  // Check localStorage for theme preference
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    setIsDarkMode(savedTheme === "dark");
+    document.body.classList.toggle("dark-mode", savedTheme === "dark");
+
+    // Select all elements with the class 'blog-grid'
+    const blogGrids = document.querySelectorAll(".blog-grid");
+    blogGrids.forEach((blogGrid) => {
+      blogGrid.classList.toggle("dark-mode", savedTheme === "dark");
+    });
+    // Apply dark-mode to all h2 elements
+    const headers = document.querySelectorAll(".h2");
+    headers.forEach((headers) => {
+      headers.classList.toggle("dark-mode", savedTheme === "dark");
+    });
+  } else {
+    // Set default theme if not found
+    localStorage.setItem("theme", "light");
+  }
+}, []);
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   useEffect(() => {
     if (animationClass) {
       const timer = setTimeout(() => {
-        setAnimationClass('');
+        setAnimationClass("");
       }, 500); // Duration of the animation in milliseconds
       return () => clearTimeout(timer);
     }
@@ -65,12 +88,12 @@ const DisplayMode = () => {
   return (
     <div
       ref={containerRef}
-      className={`droplet-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+      className={`droplet-container ${isDarkMode ? "dark-mode" : "light-mode"}`}
     >
-      <div className={`droplet-bar ${hasExpanded ? 'droplet-expanded' : ''}`}>
+      <div className={`droplet-bar ${hasExpanded ? "droplet-expanded" : ""}`}>
         <button onClick={handleClick} className="droplet-btn">
-          <FontAwesomeIcon icon={faSun} className={`icon ${animationClass} ${isDarkMode ? 'icon-down' : 'icon-up'}`} />
-          <FontAwesomeIcon icon={faMoon} className={`icon ${animationClass} ${isDarkMode ? 'icon-up' : 'icon-down'}`} />
+          <FontAwesomeIcon icon={faSun} className={`icon ${animationClass} ${isDarkMode ? "icon-down" : "icon-up"}`} />
+          <FontAwesomeIcon icon={faMoon} className={`icon ${animationClass} ${isDarkMode ? "icon-up" : "icon-down"}`} />
         </button>
       </div>
     </div>
