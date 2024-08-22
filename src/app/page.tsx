@@ -19,7 +19,7 @@ export default async function Home() {
       <div>
         <h1 className="text-3xl mb-5">Recently <span>I learn&apos;t...</span> </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" >
+      <div className="blog-grid grid grid-cols-1 md:grid-cols-2 gap-4" >
         {posts.results.map((post: any)=>{
           return(
             <div key={post.id}>
@@ -29,7 +29,7 @@ export default async function Home() {
                 <Link
                   href={`/blogs/${post.properties.Slug.rich_text[0].plain_text}`}
                 >
-                  <h1 className="text-xl">
+                  <h1 className="blog-title text-xl">
                     {post.properties.Title.title[0].plain_text}
                   </h1>
                   <p className="mt-4 text-sm text-dark-tertiary">

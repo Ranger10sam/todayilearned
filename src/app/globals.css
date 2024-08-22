@@ -30,3 +30,15 @@ body::-webkit-scrollbar {
     background-color: #1E201E;
     color: #eae8e6;
 }
+h1 .dark-mode{
+    color: #eae8e6;
+}
+.blog-title{
+    color: #1E201E;
+}
+.blog-title .dark-mode{
+    color: #eae8e6;
+}
+.blog-grid .dark-mode{
+    background-color: black;
+}
